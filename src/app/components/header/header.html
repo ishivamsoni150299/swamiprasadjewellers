@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg fixed-top modern-navbar shadow-sm"
+     [ngClass]="{ 'navbar-scrolled': isScrolled }">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" (click)="navigate('/')">
+      <img src="assets/logo.png" alt="Swami Prasad Jewellers" class="logo">
+      <span class="brand-text">Swami Prasad Jewellers</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" [ngClass]="{ 'show': !isNavbarCollapsed }">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigate('/')">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigate('/collections')">Collections</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigate('/about')">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigate('/contact')">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,11 @@
+{
+  "instructions": [
+    "Use Angular 17+ best practices.",
+    "Use Bootstrap for UI components.",
+    "Follow feature-based folder structure.",
+    "Use TypeScript strict mode.",
+    "Prefer standalone components.",
+    "Use Indian aesthetic and jewelry domain context for UI/UX.",
+    "After each command or operation, check for errors and handle them appropriately."
+  ]
+}

@@ -1,0 +1,59 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero-section text-center text-white">
+    <div class="hero-content">
+      <h1 class="hero-title">Timeless Elegance, Crafted for You</h1>
+      <p class="hero-subtitle">Discover exquisite jewelry that tells your story.</p>
+      <button class="btn btn-primary btn-lg" (click)="navigateTo('/collections')">Explore Collections</button>
+    </div>
+  </section>
+
+  <!-- Featured Collections Section -->
+  <section class="featured-collections py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Featured Collections</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card collection-card">
+            <img src="assets/collection-engagement.jpg" class="card-img-top" alt="Engagement Rings">
+            <div class="card-body text-center">
+              <h5 class="card-title">Engagement Rings</h5>
+              <p class="card-text">Begin your forever with a symbol of love.</p>
+              <a routerLink="/collections/engagement" class="btn btn-outline-dark">View More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card collection-card">
+            <img src="assets/collection-necklaces.jpg" class="card-img-top" alt="Necklaces">
+            <div class="card-body text-center">
+              <h5 class="card-title">Necklaces</h5>
+              <p class="card-text">Adorn your neckline with our stunning designs.</p>
+              <a routerLink="/collections/necklaces" class="btn btn-outline-dark">View More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card collection-card">
+            <img src="assets/collection-earrings.jpg" class="card-img-top" alt="Earrings">
+            <div class="card-body text-center">
+              <h5 class="card-title">Earrings</h5>
+              <p class="card-text">From classic studs to dazzling drops.</p>
+              <a routerLink="/collections/earrings" class="btn btn-outline-dark">View More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Snippet -->
+  <section class="about-snippet bg-light py-5">
+    <div class="container text-center">
+      <h2 class="mb-3">A Legacy of Trust & Craftsmanship</h2>
+      <p class="lead">For generations, Swami Prasad Jewellers has been synonymous with purity, quality, and artistry. We are dedicated to creating pieces that are not just ornaments, but heirlooms.</p>
+      <button class="btn btn-dark" (click)="navigateTo('/about')">Learn More About Us</button>
+    </div>
+  </section>
+</div>
+
