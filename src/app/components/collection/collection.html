@@ -1,1 +1,35 @@
-<p>collection works!</p>
+<div class="collection-container">
+  <header class="collection-header">
+    <h1>Our Exquisite Collection</h1>
+    <p>Discover timeless pieces, crafted with passion and precision.</p>
+    <div class="divider"></div>
+  </header>
+
+  <nav class="filter-bar">
+    <button *ngFor="let category of categories"
+            (click)="filterByCategory(category)"
+            [ngClass]="{ 'active': category === selectedCategory }"
+            class="filter-btn">
+      {{ category }}
+    </button>
+  </nav>
+
+  <div class="product-grid">
+    <div *ngFor="let product of filteredProducts" class="product-card">
+      <div class="product-image-wrapper">
+        <img [src]="product.imageUrl" [alt]="product.name">
+        <div class="product-overlay">
+          <a href="#" class="details-btn">View Details</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">{{ product.category }}</p>
+        <h3 class="product-name">{{ product.name }}</h3>
+      </div>
+    </div>
+
+    <div *ngIf="filteredProducts.length === 0" class="no-results">
+      <p>No products found in this category.</p>
+    </div>
+  </div>
+</div>

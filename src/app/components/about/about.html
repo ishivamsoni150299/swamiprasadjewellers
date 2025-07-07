@@ -1,1 +1,42 @@
-<p>about works!</p>
+<div class="about-container">
+  <header class="about-header">
+    <h1>{{ title }}</h1>
+    <div class="divider"></div>
+  </header>
+
+  <section class="content-section story-section">
+    <div class="text-content">
+      <h2>Our Story Since {{ ourStory.since }}</h2>
+      <p>{{ ourStory.paragraph1 }}</p>
+      <p>{{ ourStory.paragraph2 }}</p>
+    </div>
+    <div class="image-content">
+      <!-- Replace with your own image -->
+      <img src="assets/vintage-jeweller.jpg" alt="Vintage photo of a jeweller at work">
+    </div>
+  </section>
+
+  <section class="content-section craftsmanship-section">
+    <div class="image-content">
+      <!-- Replace with your own image -->
+      <img src="assets/crafting-jewelry.jpg" alt="Jeweller crafting a piece of jewelry">
+    </div>
+    <div class="text-content">
+      <h2>{{ ourCraftsmanship.title }}</h2>
+      <p>{{ ourCraftsmanship.description }}</p>
+      <ul class="craft-points">
+        <li *ngFor="let point of ourCraftsmanship.points">
+          <span class="icon">{{ point.icon }}</span>
+          <span>{{ point.text }}</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="promise-section">
+    <h2>{{ ourPromise.title }}</h2>
+    <p>{{ ourPromise.description }}</p>
+    <!-- This button links to a '/products' route. Make sure this route exists in your application. -->
+    <a routerLink="/products" class="cta-button">Explore Our Collection</a>
+  </section>
+</div>

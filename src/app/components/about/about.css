@@ -1,0 +1,346 @@
+:host {
+  display: block;
+  background-color: #fdfaf6; /* A very light, warm off-white */
+  color: #333;
+  font-family: 'Garamond', 'Times New Roman', serif;
+  padding: 40px 20px;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.about-header h1 {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #0A2342; /* A deep, elegant blue */
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 100px;
+  height: 2px;
+  background-color: #D4AF37; /* A classic gold color */
+  margin: 0 auto;
+}
+
+.content-section {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+/* Reverse layout for the craftsmanship section for visual variety */
+.craftsmanship-section {
+  flex-direction: row-reverse;
+}
+
+.text-content {
+  flex: 1;
+}
+
+.text-content h2 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #0A2342;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.text-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #D4AF37;
+}
+
+.text-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.image-content {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.image-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.image-content:hover img {
+  transform: scale(1.05);
+}
+
+.craft-points {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.craft-points li {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.craft-points .icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  color: #D4AF37;
+}
+
+.promise-section {
+  text-align: center;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.promise-section h2 {
+  font-size: 2.2rem;
+  color: #0A2342;
+  margin-bottom: 15px;
+}
+
+.promise-section p {
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #D4AF37;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #b89a31;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .content-section {
+    flex-direction: column;
+  }
+  .craftsmanship-section {
+    flex-direction: column; /* Keep it consistent on mobile */
+  }
+  .about-header h1, .text-content h2, .promise-section h2 {
+    font-size: 2rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+:host {
+  display: block;
+  background-color: #fdfaf6; /* A very light, warm off-white */
+  color: #333;
+  font-family: 'Garamond', 'Times New Roman', serif;
+  /* Increased top padding to push content below the header.
+     Adjust 120px to whatever your header's height is, plus some extra space. */
+  padding: 120px 20px 40px 20px;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.about-header h1 {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #0A2342; /* A deep, elegant blue */
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 100px;
+  height: 2px;
+  background-color: #D4AF37; /* A classic gold color */
+  margin: 0 auto;
+}
+
+.content-section {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+/* Reverse layout for the craftsmanship section for visual variety */
+.craftsmanship-section {
+  flex-direction: row-reverse;
+}
+
+.text-content {
+  flex: 1;
+}
+
+.text-content h2 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #0A2342;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.text-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #D4AF37;
+}
+
+.text-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.image-content {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.image-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.image-content:hover img {
+  transform: scale(1.05);
+}
+
+.craft-points {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.craft-points li {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.craft-points .icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  color: #D4AF37;
+}
+
+.promise-section {
+  text-align: center;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.promise-section h2 {
+  font-size: 2.2rem;
+  color: #0A2342;
+  margin-bottom: 15px;
+}
+
+.promise-section p {
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #D4AF37;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #b89a31;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .content-section {
+    flex-direction: column;
+  }
+  .craftsmanship-section {
+    flex-direction: column; /* Keep it consistent on mobile */
+  }
+  .about-header h1, .text-content h2, .promise-section h2 {
+    font-size: 2rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
