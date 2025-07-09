@@ -25,6 +25,12 @@
           <a class="nav-link" (click)="navigate('/contact')">Contact</a>
         </li>
       </ul>
+      <div class="header-actions ms-lg-3">
+        <a class="cart-link" routerLink="/cart">
+          <i class="bi bi-cart cart-icon"></i>
+          <span *ngIf="(cartItemCount$ | async) as count" [class.hidden]="count === 0" class="cart-badge">{{ count }}</span>
+        </a>
+      </div>
     </div>
   </div>
 </nav>

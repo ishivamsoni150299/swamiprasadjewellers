@@ -1,1 +1,98 @@
-<p>checkout works!</p>
+<div class="checkout-container">
+  <h1>Checkout</h1>
+  <div class="checkout-layout">
+    <div class="shipping-form">
+      <h2>Shipping Address</h2>
+       <form [formGroup]="checkoutForm" novalidate>
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" formControlName="fullName" class="form-control">
+          <!-- Add validation messages if you want -->
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" formControlName="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Mobile Number</label>
+          <input type="tel" id="phoneNumber" formControlName="phoneNumber" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="address">Street Address</label>
+          <input type="text" id="address" formControlName="address" class="form-control">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" formControlName="city" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" formControlName="state" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input type="text" id="zipCode" formControlName="zipCode" class="form-control">
+          </div>
+        </div>
+               <!-- Changed button to trigger UPI payment -->
+        <button type="button" class="btn-place-order"  (click)="initiateUpiPayment()">
+          Pay with UPI / QR Code
+        </button>
+      </form>
+    </div>
+
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div *ngIf="(cartItems$ | async) as items" class="summary-items">
+        <div *ngFor="let item of items" class="summary-item">
+          <img [src]="item.product.imageUrl" [alt]="item.product.name" class="summary-item-image">
+          <div class="summary-item-details">
+          <div class="summary-item-info">
+              <span class="summary-item-name">{{ item.product.name }} (x{{ item.quantity }})</span>
+              <!-- Barcode will be rendered here -->
+              <!-- Use the ngx-barcode6 component -->
+              <ngx-barcode6
+                [bc-value]="'' + item.product.id"
+                [bc-display-value]="false"
+                [bc-width]="1.5"
+                [bc-height]="30"
+                [bc-margin]="0"
+                class="summary-item-barcode">
+              </ngx-barcode6>
+            </div>
+            <span class="summary-item-price">{{ (item.product.price * item.quantity) | currency:'INR' }}</span>
+
+          </div>
+        </div>
+      </div>
+      <div class="summary-total">
+        <h3>Total</h3>
+        <p>{{ (cartTotal$ | async) | currency:'INR' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UPI Payment Modal -->
+<div class="upi-modal-overlay" *ngIf="isUpiModalVisible">
+  <div class="upi-modal-content">
+    <button class="btn-close-modal" (click)="closeUpiModal()">&times;</button>
+    <h2>UPI Payment</h2>
+    <p>{{ paymentStatusMessage }}</p>
+
+    <div class="qr-code-container" *ngIf="upiQrCodeData; else loadingSpinner">
+      <qrcode
+        [qrdata]="upiQrCodeData"
+        [width]="256"
+        [errorCorrectionLevel]="'M'">
+      </qrcode>
+    </div>
+
+    <ng-template #loadingSpinner>
+      <div class="spinner"></div>
+    </ng-template>
+
+    <small>This window will automatically close after successful payment.</small>
+  </div>
+</div>

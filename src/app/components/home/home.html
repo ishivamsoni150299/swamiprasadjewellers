@@ -9,38 +9,23 @@
   </section>
 
   <!-- Featured Collections Section -->
-  <section class="featured-collections py-5">
+  <section class="featured-collections py-5 bg-light">
     <div class="container">
-      <h2 class="text-center mb-4">Featured Collections</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card collection-card">
-            <img src="assets/collection-engagement.jpg" class="card-img-top" alt="Engagement Rings">
-            <div class="card-body text-center">
-              <h5 class="card-title">Engagement Rings</h5>
-              <p class="card-text">Begin your forever with a symbol of love.</p>
-              <a routerLink="/collections/engagement" class="btn btn-outline-dark">View More</a>
-            </div>
-          </div>
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="loading-container">
+        <div class="spinner"></div>
+        <p>Loading featured collections...</p>
+      </div>
+
+      <!-- Content State -->
+      <div *ngIf="!isLoading">
+        <div class="text-center mb-5">
+          <h2 class="display-5">Featured Collections</h2>
+          <p class="lead text-muted">Discover pieces that tell a story of elegance and craftsmanship.</p>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card collection-card">
-            <img src="assets/collection-necklaces.jpg" class="card-img-top" alt="Necklaces">
-            <div class="card-body text-center">
-              <h5 class="card-title">Necklaces</h5>
-              <p class="card-text">Adorn your neckline with our stunning designs.</p>
-              <a routerLink="/collections/necklaces" class="btn btn-outline-dark">View More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card collection-card">
-            <img src="assets/collection-earrings.jpg" class="card-img-top" alt="Earrings">
-            <div class="card-body text-center">
-              <h5 class="card-title">Earrings</h5>
-              <p class="card-text">From classic studs to dazzling drops.</p>
-              <a routerLink="/collections/earrings" class="btn btn-outline-dark">View More</a>
-            </div>
+        <div class="row g-4" >
+          <div class="col-lg-4 col-md-6" *ngFor="let collection of featuredCollections; trackBy: trackByCollectionId" [@fadeRotate]>
+            <app-collection-card [collection]="collection"></app-collection-card>
           </div>
         </div>
       </div>
@@ -56,4 +41,3 @@
     </div>
   </section>
 </div>
-

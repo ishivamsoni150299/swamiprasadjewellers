@@ -1,1 +1,48 @@
-<p>cart works!</p>
+<div class="cart-container">
+  <h1>Your Shopping Cart</h1>
+
+  <div *ngIf="(cartItems$ | async) as items; else emptyCart">
+    <div *ngIf="items.length > 0; else emptyCart">
+
+      <div class="cart-items-list">
+        <div *ngFor="let item of items" class="cart-item">
+          <img [src]="item.product.imageUrl" [alt]="item.product.name" class="item-image">
+          <div class="item-details">
+            <h3 class="item-name">{{ item.product.name }}</h3>
+            <p class="item-category">{{ item.product.category }}</p>
+            <p class="item-price">{{ item.product.price | currency:'USD' }}</p>
+          </div>
+          <div class="item-quantity">
+            <label [for]="'quantity-' + item.product.id">Quantity:</label>
+            <input type="number" [id]="'quantity-' + item.product.id" [value]="item.quantity" (change)="onQuantityChange($event, item)" min="1" class="quantity-input">
+          </div>
+          <div class="item-total">
+            <p>{{ (item.product.price * item.quantity) | currency:'USD' }}</p>
+          </div>
+          <div class="item-actions">
+            <button (click)="removeFromCart(item.product.id)" class="btn-remove" title="Remove item">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <div class="summary-total">
+          <h2>Total</h2>
+          <p>{{ (cartTotal$ | async) | currency:'USD' }}</p>
+        </div>
+        <a routerLink="/checkout" class="btn-checkout">Proceed to Checkout</a>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart-message">
+      <p>Your cart is currently empty.</p>
+      <a routerLink="/collections" class="btn-shop">Continue Shopping</a>
+    </div>
+  </ng-template>
+</div>
+

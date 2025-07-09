@@ -1,0 +1,21 @@
+<div class="product-card">
+  <div class="product-image-wrapper">
+    <img [src]="product.imageUrl" [alt]="product.name">
+  </div>
+  <div class="product-info">
+    <p class="product-category">{{ product.category }}</p>
+    <h3 class="product-name">{{ product.name }}</h3>
+    <p class="product-price">{{ product.price | currency:'USD' }}</p>
+  </div>
+  <div class="product-actions">
+    <button class="btn btn-buy-now" (click)="addToCart()" [class.added]="isAdded" [disabled]="isAdded">
+      <span *ngIf="!isAdded">Add to Cart</span>
+      <span *ngIf="isAdded">
+        <i class="bi bi-check-lg check-icon"></i> Added!
+      </span>
+    </button>
+    <button class="btn btn-whatsapp" (click)="messageOnWhatsApp()">
+      <i class="bi bi-whatsapp whatsapp-icon"></i> Message
+    </button>
+  </div>
+</div>

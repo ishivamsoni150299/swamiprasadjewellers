@@ -66,3 +66,26 @@ if (isMainModule(import.meta.url)) {
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
  */
 export const reqHandler = createNodeRequestHandler(app);
+
+// --- NEW ENDPOINT FOR UPI/QR CODE PAYMENT ---
+app.post('/api/create-upi-payment', async (req, res) => {
+  const { amount, customer } = req.body;
+  const options = {
+    amount: amount * 100, // Amount in paise
+    currency: 'INR',
+    receipt: `receipt_order_${new Date().getTime()}`,
+    payment: {
+      capture: 'automatic',
+      capture_options: {
+        refund_speed: 'optimum'
+      }
+    },
+    method: 'upi', // Specify UPI method
+    customer_id: 'YOUR_CUSTOMER_ID' // You would create/fetch a customer from Razorpay
+  };
+
+  // This is a simplified example. A real gateway would provide a specific method
+  // to generate QR code data or a UPI intent string.
+  const upiString = `upi://pay?pa=YOUR_VPA@OKICICI&pn=Swami%20Prasad%20Jewellers&am=${amount}&cu=INR&tid=ORDER_${new Date().getTime()}`;
+  res.json({ qrCodeData: upiString });
+});

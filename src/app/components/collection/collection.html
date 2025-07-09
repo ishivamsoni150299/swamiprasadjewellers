@@ -14,22 +14,19 @@
     </button>
   </nav>
 
-  <div class="product-grid">
-    <div *ngFor="let product of filteredProducts" class="product-card">
-      <div class="product-image-wrapper">
-        <img [src]="product.imageUrl" [alt]="product.name">
-        <div class="product-overlay">
-          <a href="#" class="details-btn">View Details</a>
-        </div>
-      </div>
-      <div class="product-info">
-        <p class="product-category">{{ product.category }}</p>
-        <h3 class="product-name">{{ product.name }}</h3>
-      </div>
-    </div>
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading our finest jewelry...</p>
+  </div>
 
-    <div *ngIf="filteredProducts.length === 0" class="no-results">
-      <p>No products found in this category.</p>
+  <!-- Content State -->
+  <div *ngIf="!isLoading" class="product-grid-wrapper">
+    <div class="product-grid">
+      <app-product-card *ngFor="let product of filteredProducts" [product]="product"></app-product-card>
+      <div *ngIf="filteredProducts.length === 0 && !isLoading" class="no-results">
+        <p>No products found in this category.</p>
+      </div>
     </div>
   </div>
 </div>

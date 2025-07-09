@@ -1,0 +1,8 @@
+<div class="card collection-card h-100">
+  <img [src]="collection.imageUrl" class="card-img-top" [alt]="collection.name">
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ collection.name }}</h5>
+    <p class="card-text">{{ collection.description }}</p>
+    <a [routerLink]="['/collections', collection.id]" class="btn btn-outline-dark">View More</a>
+  </div>
+</div>
