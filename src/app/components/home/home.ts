@@ -1,58 +1,56 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Collection, Product } from '../../models/collection.model';
+import { Observable } from 'rxjs';
+import { Product } from '../../models/collection.model';
 import { CollectionService } from '../../services/collection.service';
-import { CollectionCardComponent } from '../collection-card/collection-card';
+import { ProductCard } from '../product-card/product-card';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CollectionCardComponent],
+  imports: [CommonModule, ProductCard],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
-  animations: [
-    trigger('fadeRotate', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(10px)' }),
-        animate('400ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
-      ]),
-      transition(':leave', [
-        animate('400ms ease-in', style({ opacity: 0, transform: 'translateY(-10px)' }))
-      ]),
-    ]),
-  ]
+  animations: []
 })
-export class Home implements OnInit, OnDestroy {
+export class Home implements OnInit {
   private collectionService = inject(CollectionService);
   private router = inject(Router);
-  private featuredSub!: Subscription;
 
-  isLoading = true;
-  featuredCollections: Collection[] = [];
+  featuredProducts$!: Observable<Product[]>;
+  rakhiProducts$!: Observable<Product[]>;
+  testimonials = [
+    {
+      quote:
+        'The quality and craftsmanship are unparalleled. I found the perfect engagement ring for my fiancée, and she was overjoyed!',
+      author: 'Rohan M.',
+      location: 'Mumbai',
+    },
+    {
+      quote:
+        'A wonderful shopping experience from start to finish. The staff was incredibly helpful, and their collection is breathtaking.',
+      author: 'Priya S.',
+      location: 'Delhi',
+    },
+    {
+      quote: `I purchased a necklace for my mother's birthday, and it was even more beautiful in person. A true family heirloom.`,
+      author: 'Anjali K.',
+      location: 'Bengaluru',
+    },
+  ];
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.featuredSub = this.collectionService.getDynamicFeaturedCollections()
-      .subscribe((collections: Collection[]) => {
-        if (this.isLoading) {
-          this.isLoading = false;
-        }
-        this.featuredCollections = collections;
-      });
+    this.featuredProducts$ = this.collectionService.getFeaturedProducts();
+    this.rakhiProducts$ = this.collectionService.getProductsByTag('rakhi', 4); // Fetch up to 4 products
   }
 
   navigateTo(path: string): void {
     this.router.navigate([path]);
   }
 
-  ngOnDestroy(): void {
-    this.featuredSub?.unsubscribe();
-  }
-
-  trackByCollectionId(index: number, collection: Collection): string {
-    return collection.id;
+  trackByProductId(index: number, product: Product): string {
+    // Product IDs are numbers, so convert to string for the key
+    return `${product.id}`;
   }
 }

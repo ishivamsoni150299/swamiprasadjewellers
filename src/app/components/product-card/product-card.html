@@ -1,11 +1,17 @@
-<div class="product-card">
-  <div class="product-image-wrapper">
-    <img [src]="product.imageUrl" [alt]="product.name">
-  </div>
+<div class="product-card" (mouseover)="onMouseOver()" (mouseout)="onMouseOut()">
+  <a [routerLink]="['/product', product.id]" class="product-image-link">
+    <div class="product-image-wrapper">
+      <img [src]="displayImageUrl" [alt]="product.name">
+      <!-- This indicator will let users know more images are available on hover -->
+      <div *ngIf="product.additionalImages && product.additionalImages.length > 1" class="image-indicator">
+        <i class="bi bi-images"></i>
+      </div>
+    </div>
+  </a>
   <div class="product-info">
     <p class="product-category">{{ product.category }}</p>
     <h3 class="product-name">{{ product.name }}</h3>
-    <p class="product-price">{{ product.price | currency:'USD' }}</p>
+    <p class="product-price">{{ product.price | currency:'INR' }}</p>
   </div>
   <div class="product-actions">
     <button class="btn btn-buy-now" (click)="addToCart()" [class.added]="isAdded" [disabled]="isAdded">

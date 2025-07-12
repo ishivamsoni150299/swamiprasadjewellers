@@ -1,6 +1,7 @@
 .hero-section {
   background: url('/assets/hero-background.jpg') no-repeat center center;
   background-size: cover;
+  background-attachment: fixed; /* This creates the parallax effect */
   padding: 150px 0;
   position: relative;
 }
@@ -36,6 +37,13 @@
   background-color: #f8f9fa;
 }
 
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
 /* --- Loading State --- */
 .loading-container {
   display: flex;
@@ -65,4 +73,69 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* --- Testimonials Section --- */
+.testimonials-section {
+  background-color: #f8f9fa; /* Match bg-light from HTML */
+}
+
+.testimonial-card-wrapper {
+  padding: 20px 80px; /* Add horizontal padding for controls */
+}
+
+.testimonial-card {
+  background-color: #fff;
+  border-left: 4px solid #D4AF37;
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 700px;
+  margin: 0 auto;
+  min-height: 250px;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.testimonial-quote-icon {
+  font-size: 2.5rem;
+  color: #D4AF37;
+  opacity: 0.4;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.testimonial-quote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #555;
+  flex-grow: 1;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.author-location {
+  font-weight: normal;
+  color: #777;
+}
+
+/* Dark controls for the carousel */
+#testimonialCarousel .carousel-control-prev-icon,
+#testimonialCarousel .carousel-control-next-icon {
+  filter: invert(1) grayscale(100);
 }

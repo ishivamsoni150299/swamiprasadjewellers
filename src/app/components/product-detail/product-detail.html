@@ -1,1 +1,87 @@
-<p>product-detail works!</p>
+<div class="product-detail-container" *ngIf="product$ | async as product; else loading">
+  <div class="breadcrumb">
+    <a routerLink="/">Home</a> / <a routerLink="/collections">Collections</a> / <span>{{ product.name }}</span>
+  </div>
+
+  <div class="product-layout">
+    <!-- Image Gallery -->
+    <div class="product-gallery">
+      <div class="main-image-container">
+        <img [src]="selectedImageUrl" [alt]="product.name" class="main-image">
+      </div>
+      <div class="thumbnail-container" *ngIf="product.additionalImages && product.additionalImages.length > 1">
+        <img *ngFor="let image of product.additionalImages"
+             [src]="image"
+             [alt]="product.name + ' thumbnail'"
+             class="thumbnail-image"
+             [class.active]="image === selectedImageUrl"
+             (click)="selectImage(image)">
+      </div>
+    </div>
+
+    <!-- Product Information -->
+    <div class="product-info">
+      <h1 class="product-title">{{ product.name }}</h1>
+
+      <!-- Review Summary -->
+      <div class="review-summary" *ngIf="product.reviews && product.reviews.length > 0">
+        <app-star-rating [rating]="getAverageRating(product.reviews)"></app-star-rating>
+        <a href="#reviews-section" class="review-count">
+          {{ product.reviews.length }} review<span *ngIf="product.reviews.length > 1">s</span>
+        </a>
+      </div>
+
+      <div class="price-container">
+        <p class="product-price" [class.sale]="product.originalPrice">
+          {{ product.price | currency:'INR' }}
+        </p>
+        <p *ngIf="product.originalPrice" class="original-price">
+          {{ product.originalPrice | currency:'INR' }}
+        </p>
+        <span *ngIf="product.originalPrice" class="sale-badge">SALE</span>
+      </div>
+
+      <p class="product-description">{{ product.description }}</p>
+
+      <div class="product-actions">
+        <button class="btn btn-add-to-cart" (click)="addToCart(product)" [class.added]="isAdded" [disabled]="isAdded" [class.shake]="isShaking">
+          <span *ngIf="!isAdded">Add to Cart</span>
+          <span *ngIf="isAdded"><i class="bi bi-check-lg"></i> Added!</span>
+        </button>
+      </div>
+
+      <div class="product-meta">
+        <p><strong>Category:</strong> {{ product.category }}</p>
+        <!-- Add more meta info here if available, e.g., materials, weight -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Reviews Section -->
+  <div id="reviews-section" class="customer-reviews-section" *ngIf="product.reviews && product.reviews.length > 0">
+    <h2 class="customer-reviews-title">Customer Reviews</h2>
+    <div class="reviews-list">
+      <app-product-review *ngFor="let review of product.reviews" [review]="review"></app-product-review>
+    </div>
+  </div>
+
+  <!-- No Reviews Message -->
+  <div class="no-reviews-section" *ngIf="!product.reviews || product.reviews.length === 0">
+    <h2 class="customer-reviews-title">Customer Reviews</h2>
+    <p>There are no reviews for this product yet.</p>
+    <p>Be the first to share your thoughts!</p>
+  </div>
+
+  <!-- Related Products Section -->
+  <div class="related-products-section" *ngIf="(relatedProducts$ | async) as relatedProducts">
+    <h2 class="related-products-title">You Might Also Like</h2>
+    <div class="related-products-grid" *ngIf="relatedProducts.length > 0">
+      <app-product-card *ngFor="let relatedProduct of relatedProducts" [product]="relatedProduct"></app-product-card>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="loading-spinner"></div>
+</ng-template>

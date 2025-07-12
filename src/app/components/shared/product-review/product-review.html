@@ -1,0 +1,15 @@
+<div class="review-card">
+  <div class="review-header">
+    <div class="author-info">
+      <span class="author-name">{{ review.author }}</span>
+      <span *ngIf="review.isVerified" class="verified-badge">
+        <i class="bi bi-patch-check-fill"></i> Verified Purchase
+      </span>
+    </div>
+    <div class="review-meta">
+      <app-star-rating [rating]="review.rating"></app-star-rating>
+      <span class="review-date">{{ review.date | date:'mediumDate' }}</span>
+    </div>
+  </div>
+  <p class="review-comment">{{ review.comment }}</p>
+</div>

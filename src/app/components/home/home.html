@@ -8,26 +8,82 @@
     </div>
   </section>
 
-  <!-- Featured Collections Section -->
-  <section class="featured-collections py-5 bg-light">
+  <!-- Featured Products Section -->
+  <section class="featured-products py-5">
     <div class="container">
-      <!-- Loading State -->
-      <div *ngIf="isLoading" class="loading-container">
-        <div class="spinner"></div>
-        <p>Loading featured collections...</p>
-      </div>
-
-      <!-- Content State -->
-      <div *ngIf="!isLoading">
+      <ng-container *ngIf="featuredProducts$ | async as products; else loadingProducts">
         <div class="text-center mb-5">
-          <h2 class="display-5">Featured Collections</h2>
-          <p class="lead text-muted">Discover pieces that tell a story of elegance and craftsmanship.</p>
+          <h2 class="display-5">Featured Products</h2>
+          <p class="lead text-muted">Handpicked just for you.</p>
         </div>
-        <div class="row g-4" >
-          <div class="col-lg-4 col-md-6" *ngFor="let collection of featuredCollections; trackBy: trackByCollectionId" [@fadeRotate]>
-            <app-collection-card [collection]="collection"></app-collection-card>
+        <div class="product-grid">
+          <app-product-card *ngFor="let product of products; trackBy: trackByProductId" [product]="product"></app-product-card>
+        </div>
+        <div class="text-center mt-5">
+          <button class="btn btn-outline-dark btn-lg" (click)="navigateTo('/collections')">View All Products</button>
+        </div>
+      </ng-container>
+      <ng-template #loadingProducts>
+        <div class="loading-container">
+          <div class="spinner"></div>
+          <p>Loading featured products...</p>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+
+  <!-- Rakhi Specials Section -->
+  <section class="featured-products py-5 bg-light">
+    <div class="container">
+      <ng-container *ngIf="rakhiProducts$ | async as products; else loadingRakhi">
+        <div *ngIf="products.length > 0">
+          <div class="text-center mb-5">
+            <h2 class="display-5">Rakhi Specials</h2>
+            <p class="lead text-muted">Celebrate the bond of love with the perfect gift.</p>
+          </div>
+          <div class="product-grid">
+            <app-product-card *ngFor="let product of products; trackBy: trackByProductId" [product]="product"></app-product-card>
           </div>
         </div>
+      </ng-container>
+      <ng-template #loadingRakhi>
+        <div class="loading-container">
+          <div class="spinner"></div>
+          <p>Loading Rakhi specials...</p>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5">What Our Customers Say</h2>
+        <p class="lead text-muted">A testament to our commitment to quality and service.</p>
+      </div>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let testimonial of testimonials; let i = index" [class.active]="i === 0">
+            <div class="testimonial-card-wrapper">
+              <div class="testimonial-card">
+                <i class="bi bi-quote testimonial-quote-icon"></i>
+                <p class="testimonial-quote">{{ testimonial.quote }}</p>
+                <div class="testimonial-author">
+                  <span class="author-name">&mdash; {{ testimonial.author }}</span>, <span class="author-location">{{ testimonial.location }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
   </section>

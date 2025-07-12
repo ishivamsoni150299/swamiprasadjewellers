@@ -1,0 +1,11 @@
+.star-rating-container {
+  color: #f39c12; /* A warm, gold-like yellow */
+  font-size: 1.1rem; /* Adjust size as needed */
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star-rating-container .bi {
+  line-height: 1; /* Helps with vertical alignment */
+}
+

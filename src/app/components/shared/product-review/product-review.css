@@ -1,0 +1,73 @@
+/* Card-like container for each review */
+.review-card {
+  background-color: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Header containing author and metadata */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Author's name and verified badge */
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.author-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #343a40;
+}
+
+.verified-badge {
+  font-size: 0.85rem;
+  color: #28a745; /* Green for verified */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.verified-badge .bi {
+  font-size: 1rem;
+}
+
+/* Star rating and date */
+.review-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  text-align: right;
+}
+
+.review-date {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* The main comment text */
+.review-comment {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #495057;
+  margin: 0;
+  white-space: pre-wrap; /* Preserves whitespace and line breaks */
+}
+

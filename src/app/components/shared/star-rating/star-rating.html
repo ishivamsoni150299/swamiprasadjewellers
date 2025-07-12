@@ -1,0 +1,6 @@
+<div class="star-rating-container" [title]="rating + ' out of ' + maxRating + ' stars'">
+  <ng-container *ngFor="let isFilled of stars">
+    <i class="bi" [class.bi-star-fill]="isFilled" [class.bi-star]="!isFilled"></i>
+  </ng-container>
+</div>
+
